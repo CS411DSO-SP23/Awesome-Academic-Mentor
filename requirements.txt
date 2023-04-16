@@ -1,0 +1,6 @@
+dash==2.9.3
+mysql-connector-python==8.0.32
+py2neo==2021.2.3
+neo4j
+pymysql
+pandas
