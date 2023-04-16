@@ -6,7 +6,7 @@ from neo4j import GraphDatabase
 from os import path, mkdir
 from pathlib import Path
 
-from data_utils import createDataset   
+from utils.data_utils import createDataset   
 
 
 def processCSV():
