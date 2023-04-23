@@ -11,7 +11,7 @@
   - Improving the quality and productivity of academic research by connecting students or researchers with experienced mentors who can provide guidance and support.
 
 ## 2. Demo
-Please check the [demo video]().
+Please check the [demo video](https://mediaspace.illinois.edu/media/t/1_1ob64fu4).
 
 ## 3. Installation
 
