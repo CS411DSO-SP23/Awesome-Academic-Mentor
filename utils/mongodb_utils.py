@@ -33,8 +33,29 @@ def loadMongoDB():
         Collection.insert_many(file_data)
     else:
         Collection.insert_one(file_data)
+ 
 
-    return client    
+################## Widget 2 ##################
+
+def getProfile(input_name):
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client["academicworld"]
+    collection = db["faculty"]
+    result = collection.find({"name": input_name})
+    distinct = collection.find({"name": input_name}).distinct('id')
+    res = []
+    for r in result[:len(distinct)]:
+        res.append({
+            'photo_url': r['photoUrl'],
+            'name': r['name'], 
+            'position': r['position'], 
+            'email': r['email'],
+            'phone': r['phone'],
+            'research_interest': r['researchInterest'],
+            'pubNum': len(r['publications']),
+            'uni': r['affiliation']['name']})
+
+    return res
 
 if __name__ == '__main__':
-    db = loadMongoDB()   
+    loadMongoDB()

@@ -5,9 +5,8 @@ from tqdm import tqdm
 from neo4j import GraphDatabase
 from os import path, mkdir
 from pathlib import Path
-
-from utils.data_utils import createDataset   
-
+# from data_utils import createDataset   
+from utils.data_utils import createDataset  
 
 def processCSV():
     curr_path = Path(path.abspath(path.dirname(__file__)))
@@ -139,10 +138,16 @@ def generateNEO4JCSV():
 
     processCSV()
 
+################## Widget 6 ##################
 
-def loadNEO4J(url, user, password):
-    return GraphDatabase.driver(url, auth=(user, password))
-
+def getVenues(input_name):
+    driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "password"))
+    with driver.session(database='academicworld') as session:
+        result = session.run(f"MATCH (f:FACULTY)-[:PUBLISH]->(pub:PUBLICATION) WHERE f.name='{input_name}' RETURN pub.venue" )
+        res = []
+        for r in result:
+            res.append(r.data())
+        return pd.DataFrame(res)
 
 if __name__ == '__main__':
     generateNEO4JCSV()

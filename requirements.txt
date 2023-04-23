@@ -4,3 +4,4 @@ py2neo==2021.2.3
 neo4j
 pymysql
 pandas
+geopandas
